@@ -1,5 +1,5 @@
 const React = require('react');
-const fakeSearch = require('./fakeSearch.js');
+const bookSearch = require('./bookSearch.js');
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class App extends React.Component {
   _onSearch(e) {
     e.preventDefault();
     this.setState({isSearching: true}, () => {
-      fakeSearch(this.state.query).then(results => {
+      bookSearch(this.state.query).then(results => {
 	this.setState({results: results, isSearching: false});
       });
     });
