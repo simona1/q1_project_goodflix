@@ -21,6 +21,17 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/style.css', function(req, res) {
+  fs.readFile('style.css', function(err, data) {
+    if (err) {
+      res.status(404).send('Not Found');
+      return;
+    }
+    res.set('Content-Type', 'text/css');
+    res.send(data);
+  });
+});
+
 app.get('/materialize.css', function(req, res) {
   fs.readFile('node_modules/materialize-css/dist/css/materialize.min.css', function(err, data) {
     if (err) {
@@ -31,6 +42,7 @@ app.get('/materialize.css', function(req, res) {
     res.send(data);
   });
 });
+
 
 app.get('/main.js', function(req, res) {
   fs.readFile('out.js', function(err, data) {
