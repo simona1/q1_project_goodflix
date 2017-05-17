@@ -1,6 +1,11 @@
-const express = require('express');
-const fs = require('fs');
 const bodyParser = require('body-parser');
+const express = require('express');
+const fetch = require('node-fetch');
+const fs = require('fs');
+const parseXml = require('xml2js').parseString;
+const queryString = require('query-string');
+
+const GOODREADS_API_KEY = require('../../secrets.json').goodreads_api_key;
 
 const app = express();
 
@@ -13,6 +18,17 @@ app.get('/', function(req, res) {
       return;
     }
     res.send(data.toString());
+  });
+});
+
+app.get('/materialize.css', function(req, res) {
+  fs.readFile('node_modules/materialize-css/dist/css/materialize.min.css', function(err, data) {
+    if (err) {
+      res.status(404).send('Not Found');
+      return;
+    }
+    res.set('Content-Type', 'text/css');
+    res.send(data);
   });
 });
 
@@ -29,13 +45,18 @@ app.get('/main.js', function(req, res) {
 
 app.post('/api/search_books', (req, res) => {
   const query = req.body;
-  res.set('Content-Type', 'application/json');
-  res.send([
-    {title: 'hunger games'},
-    {title: 'cloud atlas'}, 
-    {title: 'the alchemist'}, 
-  ].filter(book => book.title === query));
+  const url =
+    'https://www.goodreads.com/search/index.xml?' +
+    queryString.stringify({
+      key: GOODREADS_API_KEY,
+      q: query,
+    });
+  fetch(url).then(r => r.text()).then(xml => {
+    parseXml(xml, (err, data) => {
+      res.set('Content-Type', 'application/json');
+      res.send(data);
+    });
+  });
 });
-
 
 app.listen(3000);

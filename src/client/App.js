@@ -21,12 +21,13 @@ class App extends React.Component {
             onChange={this._onChangeQuery.bind(this)}
           />
           <button
+            className="waves-effect waves-light btn"
             disabled={this.state.isSearching}
             onClick={this._onSearch.bind(this)}>
             Search
           </button>
         </div>
-        <pre>{JSON.stringify(this.state.results)}</pre>
+        <pre>{JSON.stringify(this.state.results, null, 2)}</pre>
       </div>
     );
   }
