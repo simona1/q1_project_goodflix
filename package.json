@@ -2,6 +2,10 @@
   "name": "q1_project",
   "version": "1.0.0",
   "dependencies": {
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-es2015": "6.24.1",
     "express": "4.15.2",
     "webpack": "2.5.1"
   },
