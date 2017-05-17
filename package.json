@@ -2,9 +2,11 @@
   "name": "q1_project",
   "version": "1.0.0",
   "dependencies": {
-    "express": "4.15.2"
+    "express": "4.15.2",
+    "webpack": "2.5.1"
   },
   "scripts": {
-    "server": "node src/server/main.js"
+    "server": "node src/server/main.js",
+    "build": "webpack"
   }
 }
