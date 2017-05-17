@@ -1,6 +1,8 @@
 const React = require('react');
 const bookSearch = require('./bookSearch.js');
+const renderFooter = require('./renderFooter.js')
 const renderNavBar = require('./renderNavBar.js');
+
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +32,7 @@ class App extends React.Component {
             onClick={this._onSearch.bind(this)}>
             Search <i className="material-icons right">search</i> 
           </button>
+          {renderFooter()}
         </div>
         <pre>{JSON.stringify(this.state.results, null, 2)}</pre>
       </div>
