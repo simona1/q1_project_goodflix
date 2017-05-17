@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/main.js', function(req, res) {
-  fs.readFile('src/client/main.js', function(err, data) {
+  fs.readFile('out.js', function(err, data) {
     if (err) {
       res.status(404).send('Not Found');
       return;
