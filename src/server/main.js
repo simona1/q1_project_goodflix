@@ -43,6 +43,16 @@ app.get('/materialize.css', function(req, res) {
   });
 });
 
+app.get('/material-icons.css', function(req, res) {
+  fs.readFile('node_modules/material-icons/css/material-icons.css', function(err, data) {
+    if (err) {
+      res.status(404).send('Not Found');
+      return;
+    }
+    res.set('Content-Type', 'text/css');
+    res.send(data);
+  });
+});
 
 app.get('/main.js', function(req, res) {
   fs.readFile('out.js', function(err, data) {

@@ -1,0 +1,17 @@
+.book-title {
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card.book-card {
+  height: 440px;
+}
+
+.book-rating {
+  color: yellow;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
