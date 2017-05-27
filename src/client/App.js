@@ -17,9 +17,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          {renderNavBar()}
-          <div className="input-field inline">
+        {renderNavBar()}
+        <div className="center-align">
+          <div className="input-field inline inputContainer">
             <input
               type="text"
               value={this.state.query}
@@ -27,10 +27,11 @@ class App extends React.Component {
             />
           </div>
           <button
-            className="waves-effect waves-light #2196f3 blue btn"
+            className="waves-effect waves-light blue btn"
             disabled={this.state.isSearching}
             onClick={this._onSearch.bind(this)}>
-            Search <i className="material-icons right">search</i> 
+            <i className="material-icons right">search</i>
+            Search
           </button>
         </div>
         <BookList books={this.state.results} />
@@ -75,7 +76,6 @@ class App extends React.Component {
   _onChangeQuery(e) {
     this.setState({query: e.target.value});
   }
-
 }
 
 module.exports = App;
