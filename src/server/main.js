@@ -6,6 +6,7 @@ const parseXml = require('xml2js').parseString;
 const queryString = require('query-string');
 
 const GOODREADS_API_KEY = require('../../secrets.json').goodreads_api_key;
+const TMDB_API_KEY = require('../../secrets.json').tmdb_api_key;
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.get('/main.js', function(req, res) {
 
 app.post('/api/search_books', (req, res) => {
   const query = req.body;
+  console.log(query);
   const url =
     'https://www.goodreads.com/search/index.xml?' +
     queryString.stringify({
@@ -80,5 +82,34 @@ app.post('/api/search_books', (req, res) => {
     });
   });
 });
+
+app.get('/api/search_movies', (req, res) => {
+  const query = 'star trek';
+  const url =
+    'https://api.themoviedb.org/3/search/movie?' +
+    queryString.stringify({
+      query: query,
+      api_key: TMDB_API_KEY,
+    });
+  console.log(url);
+  fetch(url).then(r => r.json()).then(data => {
+      res.set('Content-Type', 'application/json');
+      res.send(data);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000);

@@ -1,8 +1,10 @@
 const React = require('react');
+const BookList = require('./BookList.js');
 const bookSearch = require('./bookSearch.js');
+const movieSearch = require('./movieSearch.js');
 const renderFooter = require('./renderFooter.js')
 const renderNavBar = require('./renderNavBar.js');
-const BookList = require('./BookList.js');
+
 
 class App extends React.Component {
   constructor(props) {
