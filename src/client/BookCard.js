@@ -27,7 +27,7 @@ class BookCard extends React.Component {
     }
     return (
       <span
-        className="book-rating"
+        className="item-rating"
         style={{width: Math.floor(24 * rating) + 'px'}}>
         {stars}
       </span>

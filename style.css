@@ -9,21 +9,30 @@
   width: 40%;
 }
 
-
-.book-title {
+.item-heading {
   font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.card.book-card {
+.card.item-card {
   height: 440px;
 }
 
-.book-rating {
-  color: yellow;
+.item-rating {
+  color: blue;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
