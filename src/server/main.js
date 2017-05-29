@@ -68,7 +68,6 @@ app.get('/main.js', function(req, res) {
 
 app.post('/api/search_books', (req, res) => {
   const query = req.body;
-  console.log(query);
   const url =
     'https://www.goodreads.com/search/index.xml?' +
     queryString.stringify({
@@ -83,8 +82,8 @@ app.post('/api/search_books', (req, res) => {
   });
 });
 
-app.get('/api/search_movies', (req, res) => {
-  const query = 'harry potter';
+app.post('/api/search_movies', (req, res) => {
+  const query = req.body;
   const url =
     'https://api.themoviedb.org/3/search/movie?' +
     queryString.stringify({
@@ -92,8 +91,8 @@ app.get('/api/search_movies', (req, res) => {
       api_key: TMDB_API_KEY,
     });
   fetch(url).then(r => r.json()).then(data => {
-      res.set('Content-Type', 'application/json');
-      res.send(data);
+    res.set('Content-Type', 'application/json');
+    res.send(data);
   });
 });
 

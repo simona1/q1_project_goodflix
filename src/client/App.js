@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: 'hunger games',
+      query: '',
       results: [],
       isSearching: false,
     };
@@ -23,6 +23,7 @@ class App extends React.Component {
         <div className="center-align">
           <div className="input-field inline inputContainer">
             <input
+              placeholder="type thine search, knave"
               type="text"
               value={this.state.query}
               onChange={this._onChangeQuery.bind(this)}
@@ -31,22 +32,13 @@ class App extends React.Component {
           <button
             className="waves-effect waves-light blue btn"
             disabled={this.state.isSearching}
-            onClick={this._onBookSearch.bind(this)}>
+            onClick={this._onMovieSearch.bind(this)}>
             <i className="material-icons right">search</i>
             Search
           </button>
         </div>
         <ItemList items={this.state.results} />
         <Footer />
-      </div>
-    );
-  }
-
-  _renderResult(book) {
-    return (
-      <div>
-        <span>{book.title} by {book.author}</span>
-        <img src={book.image} />
       </div>
     );
   }
@@ -65,6 +57,32 @@ class App extends React.Component {
             subheading: bestBook.author[0].name[0],
             imageUrl: bestBook.image_url[0],
             rating: parseFloat(result.average_rating[0]),
+          };
+        })
+	this.setState({
+          results: results,
+          isSearching: false,
+        });
+      });
+    });
+  }
+
+
+  _onMovieSearch(e) {
+    e.preventDefault();
+    this.setState({isSearching: true}, () => {
+      movieSearch(this.state.query).then(r => {
+        window.results = r;
+      
+        const results = r.results.map(result => {
+          const bestMovie = result;
+          const url = 'https://image.tmdb.org/t/p/w500/' + bestMovie.poster_path;
+
+          return {
+            heading: bestMovie.title,
+            subheading: bestMovie.release_date.split('-')[0],
+            imageUrl: url,
+            rating: bestMovie.vote_average / 2,
           };
         })
 	this.setState({
