@@ -8,6 +8,8 @@ const Rating = require('./Rating.js');
 
 window.onload = function() {
   ReactDOM.render(
+    <App />,
+/*
     <div>
       <NavBar />
       <Card
@@ -18,6 +20,7 @@ window.onload = function() {
       />
       <Footer />
     </div>,
+*/
     document.getElementById('app'),
   );
 };

@@ -1,5 +1,5 @@
 const React = require('react');
-const BookList = require('./BookList.js');
+const ItemList = require('./ItemList.js');
 const bookSearch = require('./bookSearch.js');
 const movieSearch = require('./movieSearch.js');
 const QueryTypes = require('./QueryTypes.js');
@@ -36,7 +36,7 @@ class App extends React.Component {
             Search
           </button>
         </div>
-        <BookList books={this.state.results} />
+        <ItemList items={this.state.results} />
         <Footer />
       </div>
     );
@@ -51,14 +51,6 @@ class App extends React.Component {
     );
   }
 
-  _renderMovieResult(movie) {
-    return (
-      <div>
-        Movie result goes here
-      </div>
-    );
-  }
-
   _onBookSearch(e) {
     e.preventDefault();
     this.setState({isSearching: true}, () => {
@@ -69,39 +61,12 @@ class App extends React.Component {
           const bestBook = result.best_book[0];
           const url = bestBook.image_url[0];
           return {
-            title: bestBook.title[0],
-            author: bestBook.author[0].name[0],
-            image: bestBook.image_url[0],
+            heading: bestBook.title[0],
+            subheading: bestBook.author[0].name[0],
+            imageUrl: bestBook.image_url[0],
             rating: parseFloat(result.average_rating[0]),
           };
         })
-	this.setState({
-          results: results,
-          isSearching: false,
-        });
-      });
-    });
-  }
-
-  _onMovieSearch(e) {
-    e.preventDefault();
-    this.setState({isSearching: true}, () => {
-      movieSearch(this.state.query).then(r => {
-        window.results = r;
- 
-/*     
-        const results = r.GoodreadsResponse.search[0].results[0].work.map(result => {
-          const bestBook = result.best_book[0];
-          const url = bestBook.image_url[0];
-          return {
-            title: bestBook.title[0],
-            author: bestBook.author[0].name[0],
-            image: bestBook.image_url[0],
-            rating: parseFloat(result.average_rating[0]),
-          };
-        })
-
-*/
 	this.setState({
           results: results,
           isSearching: false,
