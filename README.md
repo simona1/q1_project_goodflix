@@ -4,8 +4,8 @@
 GoodFlix is an app that allows the user to search books or movies.
 
 ## APIs used
-Querying the book information - the goodreads API 
-Querying the movie information - the movie database API 
+- Querying the book information - the goodreads API 
+- Querying the movie information - the movie database API 
 
 ## Technologies used
 GoodFlix is my Galvanize Q1 project. It was built inside a Vagrant Virtual Machine.
