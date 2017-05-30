@@ -23,9 +23,17 @@ class Footer extends React.Component {
             </div>
           </div>
           <div className="footer-copyright">
-            <div className="container">© 2017 GoodFlix</div>
+            <div className="row">
+                <span>© 2017 GoodFlix</span>
+            </div>
+            <div className="row">
+              <span>Credits: </span> 
+              <a href="https://www.goodreads.com/"  className="api">Goodreads</a>
+              <span> & </span>
+              <a href="https://www.themoviedb.org/" className="api">The Movie DB</a>
+            </div>
           </div>
-        </footer>
+         </footer>
       </div>
     );
   }

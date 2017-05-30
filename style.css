@@ -1,8 +1,11 @@
-#read {
-  background: url(read.jpg) repeat;
-  background-size: cover;
-  border: 2px solid #0d47a1;
-  height: 450px;
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 .inputContainer {
@@ -27,16 +30,6 @@
   white-space: nowrap;
 }
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
 .searchType {
   display: inline-block;
   margin-right: 5px;
@@ -45,4 +38,16 @@ main {
 
 #searchBar {
   width: 80%;
+}
+
+.api {
+  color: #5c36f4;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.navbar-fixed {
+  margin-bottom: 15px;
 }
