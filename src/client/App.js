@@ -13,6 +13,7 @@ class App extends React.Component {
       query: '',
       results: [],
       isSearching: false,
+      searchByBook: true,
     };
   }
 
@@ -22,17 +23,23 @@ class App extends React.Component {
         <NavBar />
         <div className="center-align">
           <div className="input-field inline inputContainer">
+            <select className="searchType" value={this.state.searchByBook ? 'books' : 'movies'} onChange={this._onChangeSearchType.bind(this)}>
+              <option value="books">Books</option>
+              <option value="movies">Movies</option>
+            </select>
             <input
-              placeholder="type thine search, knave"
+              id="searchBar"
+              placeholder="type search here"
               type="text"
               value={this.state.query}
               onChange={this._onChangeQuery.bind(this)}
             />
           </div>
+
           <button
             className="waves-effect waves-light blue btn"
             disabled={this.state.isSearching}
-            onClick={this._onMovieSearch.bind(this)}>
+            onClick={this._onSearch.bind(this)}>
             <i className="material-icons right">search</i>
             Search
           </button>
@@ -41,6 +48,15 @@ class App extends React.Component {
         <Footer />
       </div>
     );
+  }
+
+  _onSearch(e) {
+    e.preventDefault();
+    if (this.state.searchByBook) {
+      this._onBookSearch(e);
+    } else {
+      this._onMovieSearch(e);
+    }
   }
 
   _onBookSearch(e) {
@@ -95,6 +111,10 @@ class App extends React.Component {
 
   _onChangeQuery(e) {
     this.setState({query: e.target.value});
+  }
+
+  _onChangeSearchType(e) {
+    this.setState({searchByBook: e.target.value === 'books'});
   }
 }
 

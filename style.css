@@ -36,3 +36,13 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.searchType {
+  display: inline-block;
+  margin-right: 5px;
+  width: 15%;
+}
+
+#searchBar {
+  width: 80%;
+}
