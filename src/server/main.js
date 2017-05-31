@@ -96,18 +96,4 @@ app.post('/api/search_movies', (req, res) => {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(3000);
